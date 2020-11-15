@@ -1,0 +1,6 @@
+{
+  "csharpextensions.useThisForCtorAssignments": false,
+  "csharpextensions.privateMemberPrefix": "_",
+  "javascript.format.semicolons": "insert",
+  "typescript.format.semicolons": "insert"
+}
