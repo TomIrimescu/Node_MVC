@@ -30,3 +30,6 @@ node_modules
 # data
 products.json
 cart.json
+
+#environment variables
+.env
