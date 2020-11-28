@@ -24,8 +24,12 @@ form {
   text-align: center;
 }
 
-.centered img{
-  max-width: 40%;
+.image {
+  height: 20rem;
+}
+
+.image img {
+  height: 100%;
 }
 
 .main-header {
