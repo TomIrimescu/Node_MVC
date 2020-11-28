@@ -33,3 +33,5 @@ cart.json
 
 #environment variables
 .env
+
+util/database\.js
