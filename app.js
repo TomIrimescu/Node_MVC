@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById(1)
+  User.findByPk(1)
     .then(user => {
-      req.user = user; // this is a sequelize object
+      req.user = user; // this is a Sequelize object
       next();
     })
     .catch(err => console.log(err));
