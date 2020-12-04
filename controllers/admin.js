@@ -18,7 +18,7 @@ exports.postAddProduct = (req, res, next) => {
       title: title,
       price: price,
       imageUrl: imageUrl,
-      description: description,
+      description: description
     })
     .then(result => {
       // console.log(result);
