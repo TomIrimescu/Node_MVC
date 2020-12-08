@@ -15,19 +15,19 @@ router.get('/products', shopController.getProducts);
 // /products/12345 => GET
 router.get('/products/:productId', shopController.getProduct);
 
-// // /cart => GET
-// router.get('/cart', shopController.getCart);
+// /cart => GET
+router.get('/cart', shopController.getCart);
 
-// // /cart => POST
-// router.post('/cart', shopController.postCart);
+// /cart => POST
+router.post('/cart', shopController.postCart);
 
-// // /cart-delete-item => POST
-// router.post('/cart-delete-item', shopController.postCartDeleteProduct);
+// /cart-delete-item => POST
+router.post('/cart-delete-item', shopController.postCartDeleteProduct);
 
-// // create-order
+// create-order
 // router.post('/create-order', shopController.postOrder);
 
-// // /orders => GET
+// /orders => GET
 // router.get('/orders', shopController.getOrders);
 
 module.exports = router;
