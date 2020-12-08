@@ -6,14 +6,14 @@ const router = express.Router();
 
 router.get('/favicon.ico', (req, res) => res.status(204));
 
-// // / => GET
-// router.get('/', shopController.getIndex);
+// / => GET
+router.get('/', shopController.getIndex);
 
-// // /products => GET
-// router.get('/products', shopController.getProducts);
+// /products => GET
+router.get('/products', shopController.getProducts);
 
-// // /products/12345 => GET
-// router.get('/products/:productId', shopController.getProduct);
+// /products/12345 => GET
+router.get('/products/:productId', shopController.getProduct);
 
 // // /cart => GET
 // router.get('/cart', shopController.getCart);
