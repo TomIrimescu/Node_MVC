@@ -48,20 +48,15 @@ userSchema.methods.addToCart = function (product) {
   return this.save();
 };
 
-module.exports = mongoose.model('User', userSchema);
+userSchema.methods.removeFromCart = function (productId) {
+  const updatedCartItems = this.cart.items.filter(item => {
+    return item.productId.toString() !== productId.toString();
+  });
+  this.cart.items = updatedCartItems;
+  return this.save();
+};
 
-//   deleteItemFromCart(productId) {
-//     const updatedCartItems = this.cart.items.filter(item => {
-//       return item.productId.toString() !== productId.toString();
-//     });
-//     const db = getDb();
-//     return db
-//       .collection('users')
-//       .updateOne(
-//         { _id: new ObjectId(this._id) },
-//         { $set: { cart: { items: updatedCartItems } } }
-//       );
-//   }
+module.exports = mongoose.model('User', userSchema);
 
 //   addOrder() {
 //     const db = getDb();
@@ -94,20 +89,3 @@ module.exports = mongoose.model('User', userSchema);
 //       .find({ 'user._id': new ObjectId(this._id) })
 //       .toArray();
 //   }
-
-//   static findById(userId) {
-//     const db = getDb();
-//     return db
-//       .collection('users')
-//       .findOne({ _id: new ObjectId(userId) })
-//       .then(user => {
-//         console.log(user);
-//         return user;
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//   }
-// }
-
-
