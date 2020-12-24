@@ -36,7 +36,9 @@
 		</ul>
 		<ul class="main-header__item-list">
 			<li class="main-header__item">
-				<a href="/login">Login</a>
+				<a class="<%= path === '/login' ? 'active' : '' %>" href="/login"
+					>Login</a
+				>
 			</li>
 		</ul>
 	</nav>
@@ -77,7 +79,9 @@
 	</ul>
 	<ul class="mobile-nav__item-list">
 		<li class="mobile-nav__item">
-			<a href="/login">Login</a>
+			<a class="<%= path === '/login' ? 'active' : '' %>" href="/login"
+				>Login</a
+			>
 		</li>
 	</ul>
 </nav>
