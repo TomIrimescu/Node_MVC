@@ -4,3 +4,15 @@
 	margin: auto;
 	display: block;
 }
+
+.reset-link a {
+	text-decoration: none;
+	color: #17695c;
+	font-size: 0.9rem;
+}
+
+.reset-link a:active,
+.reset-link a:hover,
+.reset-link a.active {
+	color: #e01d7f;
+}
