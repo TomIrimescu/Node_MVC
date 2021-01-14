@@ -79,6 +79,11 @@ form {
 	color: #ffeb3b;
 }
 
+.main-header__item__logged-in {
+	color: #ffeb3b;
+	font-size: 1rem;
+}
+
 .mobile-nav {
 	width: 30rem;
 	height: 100vh;
@@ -271,6 +276,10 @@ form {
 	}
 
 	#side-menu-toggle {
+		display: none;
+	}
+
+	#logged-in-toggle {
 		display: none;
 	}
 }

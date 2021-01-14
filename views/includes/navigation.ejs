@@ -1,6 +1,14 @@
 <div class="backdrop"></div>
 <header class="main-header">
 	<button id="side-menu-toggle">Menu</button>
+	<% if (isAuthenticated) { %>
+	<div
+		id="logged-in-toggle"
+		class="main-header__item main-header__item__logged-in"
+	>
+		<%= loggedInUser %>
+	</div>
+	<% } %>
 	<nav class="main-header__nav">
 		<ul class="main-header__item-list">
 			<li class="main-header__item">
@@ -49,6 +57,9 @@
 				</a>
 			</li>
 			<% } else { %>
+			<li class="main-header__item main-header__item__logged-in">
+				<%= loggedInUser %>
+			</li>
 			<li class="main-header__item">
 				<form action="/logout" method="POST">
 					<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
