@@ -117,6 +117,8 @@ exports.postEditProduct = (req, res, next) => {
       product.description = updatedDesc;
       product.imageUrl = updatedImageUrl;
       return product.save().then(result => {
+        const flashMessage = 'You have successfully updated this product';
+        req.flash('statusMessage', flashMessage);
         console.log('UPDATED PRODUCT');
         res.redirect('/admin/products');
       });
@@ -125,13 +127,18 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
+  const updateMessage = 'You have successfully updated this product';
+  const deleteMessage = 'You have successfully deleted this product';
   Product.find({ userId: req.user._id })
     .then(products => {
       console.log(products);
       res.render('admin/products', {
         prods: products,
         pageTitle: 'Admin Products',
-        path: '/admin/products'
+        path: '/admin/products',
+        statusMessage: req.flash('statusMessage'),
+        updateMessage: updateMessage,
+        deleteMessage: deleteMessage
       });
     })
     .catch(err => console.log(err));
@@ -139,8 +146,10 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
+  const flashMessage = 'You have successfully deleted this product';
   Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
+      req.flash('statusMessage', flashMessage);
       console.log('DELETED PRODUCT');
       res.redirect('/admin/products');
     })
