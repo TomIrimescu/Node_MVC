@@ -18,14 +18,24 @@ router.get('/products', isAuth, adminController.getProducts);
 router.post(
   '/add-product',
   [
-    body('title')
+    body('title',
+      'Please enter a title.')
       .isString()
       .isLength({ min: 3 })
       .trim(),
-    body('imageUrl').isURL(),
-    body('price').isFloat(),
-    body('description')
+    // .withMessage('Please enter a title.'),
+    body('imageUrl',
+      'Please include an image.')
+      .isURL(),
+    // .withMessage('Please include an image.'),
+    body('price',
+      'Please enter a price.')
+      .isFloat(),
+    // .withMessage('Please enter a price.'),
+    body('description',
+      'Please enter a description.')
       .isLength({ min: 5, max: 400 })
+      // .withMessage('Please enter a description.')
       .trim()
   ],
   isAuth,
@@ -39,14 +49,24 @@ router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
 router.post(
   '/edit-product',
   [
-    body('title')
+    body('title',
+      'Please enter a title.')
       .isString()
       .isLength({ min: 3 })
       .trim(),
-    body('imageUrl').isURL(),
-    body('price').isFloat(),
-    body('description')
+    // .withMessage('Please enter a title.'),
+    body('imageUrl',
+      'Please include an image.')
+      .isURL(),
+    // .withMessage('Please include an image.'),
+    body('price',
+      'Please enter a price.')
+      .isFloat(),
+    // .withMessage('Please enter a price.'),
+    body('description',
+      'Please enter a description.')
       .isLength({ min: 5, max: 400 })
+      // .withMessage('Please enter a description.')
       .trim()
   ],
   isAuth,
