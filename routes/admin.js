@@ -51,10 +51,6 @@ router.post(
       .isLength({ min: 3 })
       .trim(),
     // .withMessage('Please enter a title.'),
-    body('imageUrl',
-      'Please include an image.')
-      .isURL(),
-    // .withMessage('Please include an image.'),
     body('price',
       'Please enter a price.')
       .isFloat(),

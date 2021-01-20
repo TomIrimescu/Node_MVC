@@ -33,3 +33,6 @@ cart.json
 
 #environment variables
 .env
+
+#images
+images
