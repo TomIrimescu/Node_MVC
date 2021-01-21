@@ -31,4 +31,6 @@ router.post('/create-order', isAuth, shopController.postOrder);
 // /orders => GET
 router.get('/orders', isAuth, shopController.getOrders);
 
+router.get('/orders/:orderId', isAuth, shopController.getInvoice);
+
 module.exports = router;

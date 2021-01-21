@@ -28,11 +28,10 @@ build/Release
 node_modules
 
 # data
-products.json
-cart.json
+/data
+
+#images
+/images
 
 #environment variables
 .env
-
-#images
-images
