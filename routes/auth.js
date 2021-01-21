@@ -32,10 +32,12 @@ router.post(
       .isEmail()
       .withMessage('Please enter a valid email.')
       .custom((value, { req }) => {
+        // CUSTOM VALIDATION OPTION
         // if (value === 'test@test.com') {
         //   throw new Error('This email address if forbidden.');
         // }
         // return true;
+        // CUSTOM VALIDATION OPTION
         return User.findOne({ email: value })
           .then(userDoc => {
             if (userDoc) {
@@ -55,8 +57,9 @@ router.post(
     body('confirmPassword')
       .trim()
       .custom((value, { req }) => {
+        // CUSTOM VALIDATION OPTION
         if (value !== req.body.password) {
-          throw new Error('Passwords have to match!');
+          throw new Error('Passwords do not match!');
         }
         return true;
       })

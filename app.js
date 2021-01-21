@@ -32,9 +32,11 @@ const fileStorage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/png' ||
+  if (
+    file.mimetype === 'image/png' ||
     file.mimetype === 'image/jpg' ||
-    file.mimetype === 'image/jpeg') {
+    file.mimetype === 'image/jpeg'
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -73,13 +75,13 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  // throw new Error('Sync Dummy');
+  // throw new Error('Synchronous Test');
   if (!req.session.user) {
     return next();
   }
   User.findById(req.session.user._id)
     .then(user => {
-      // throw new Error('Async Dummy');
+      // throw new Error('Asynchronous Test');
       if (!user) {
         return next();
       }
@@ -99,8 +101,11 @@ app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
+  // ERROR HANDLING OPTION 1
   // res.status(error.httpStatusCode).render(...);
+  // ERROR HANDLING OPTION 2
   // res.redirect('/500');
+  // ERROR HANDLING OPTION 3
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
