@@ -165,8 +165,6 @@ exports.postEditProduct = (req, res, next) => {
         product.imageUrl = image.path;
       }
       return product.save().then(result => {
-        const flashMessage = 'You have successfully updated this product';
-        req.flash('statusMessage', flashMessage);
         console.log('UPDATED PRODUCT');
         res.redirect('/admin/products');
       });
@@ -179,8 +177,6 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const updateMessage = 'You have successfully updated this product';
-  const deleteMessage = 'You have successfully deleted this product';
   Product.find({ userId: req.user._id })
     .then(products => {
       console.log(products);
@@ -188,9 +184,6 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: 'Admin Products',
         path: '/admin/products',
-        statusMessage: req.flash('statusMessage'),
-        updateMessage: updateMessage,
-        deleteMessage: deleteMessage
       });
     })
     .catch(err => {
@@ -200,9 +193,8 @@ exports.getProducts = (req, res, next) => {
     });
 };
 
-exports.postDeleteProduct = (req, res, next) => {
-  const prodId = req.body.productId;
-  const flashMessage = 'You have successfully deleted this product';
+exports.deleteProduct = (req, res, next) => {
+  const prodId = req.params.productId;
   Product.findById(prodId)
     .then(product => {
       if (!product) {
@@ -212,13 +204,10 @@ exports.postDeleteProduct = (req, res, next) => {
       return Product.deleteOne({ _id: prodId, userId: req.user._id });
     })
     .then(() => {
-      req.flash('statusMessage', flashMessage);
       console.log('DELETED PRODUCT');
-      res.redirect('/admin/products');
+      res.status(200).json({ message: 'Success!' });
     })
     .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+      res.status(500).json({ message: 'Deleting product failed.' });
     });
 };
