@@ -1,0 +1,11 @@
+---
+application:
+  name: "node-mvc"
+  project: "node-mvc"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-node-mvc"
+  routes:
+  - application_name: "node-mvc"
+    paths:
+    - "/*"
