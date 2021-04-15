@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 const multer = require('multer');
 
 require('dotenv').config();
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.QOVERY_DATABASE_SHOP_CONNECTION_URI;
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
