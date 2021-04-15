@@ -6,7 +6,7 @@ application:
 databases:
   - type: 'MONGODB'
     name: 'shop'
-    version: '4.4'
+    version: '4.4.4'
 routers:
   - name: 'main-node-mvc'
     routes:
