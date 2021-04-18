@@ -1,5 +1,4 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -75,13 +74,11 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  // throw new Error('Synchronous Test');
   if (!req.session.user) {
     return next();
   }
   User.findById(req.session.user._id)
     .then(user => {
-      // throw new Error('Asynchronous Test');
       if (!user) {
         return next();
       }
@@ -101,11 +98,6 @@ app.get('/500', errorController.get500);
 app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
-  // ERROR HANDLING OPTION 1
-  // res.status(error.httpStatusCode).render(...);
-  // ERROR HANDLING OPTION 2
-  // res.redirect('/500');
-  // ERROR HANDLING OPTION 3
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
@@ -122,8 +114,10 @@ mongoose
     }
   )
   .then(result => {
-    app.listen(3000);
+    console.log('results have been returned');
   })
   .catch(err => {
     console.log(err);
   });
+
+module.exports = app;
