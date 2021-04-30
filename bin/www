@@ -6,7 +6,20 @@
 
 var app = require('../app');
 var debug = require('debug')('aws-start:server');
-var http = require('http');
+// var http = require('http');
+
+/**
+ *  HTTPS server for development
+ */
+
+const fs = require('fs');
+const https = require('https');
+const privateKey = fs.readFileSync('./server.key');
+const certificate = fs.readFileSync('./server.cert');
+
+/**
+ *  End HTTPS server for development
+ */
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +32,17 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
+
+/**
+ *  HTTPS server for development
+ */
+
+var server = https.createServer({ key: privateKey, cert: certificate }, app);
+
+/**
+ *  End HTTPS server for development
+ */
 
 /**
  * Listen on provided port, on all network interfaces.

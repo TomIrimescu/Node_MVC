@@ -35,3 +35,7 @@ node_modules
 
 #environment variables
 .env
+
+#ssl 
+server.cert
+server.key
