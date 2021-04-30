@@ -1,5 +1,4 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -122,8 +121,10 @@ mongoose
     }
   )
   .then(result => {
-    app.listen(3000);
+    console.log('results have been returned');
   })
   .catch(err => {
     console.log(err);
   });
+
+module.exports = app;
