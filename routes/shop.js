@@ -5,8 +5,6 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
-// router.get('/favicon.ico', (req, res) => res.status(204));
-
 // / => GET
 router.get('/', shopController.getIndex);
 
