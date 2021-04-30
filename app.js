@@ -49,7 +49,11 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+const iconPath = path.join(__dirname, 'public', 'favicon.ico');
+const options = {
+  maxAge: 200 * 60 * 60 * 24 * 1000
+};
+app.use(favicon(iconPath, options));
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));
