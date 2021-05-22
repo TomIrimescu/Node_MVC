@@ -275,7 +275,6 @@ exports.getInvoice = (req, res, next) => {
       const invoiceName = 'invoice-' + orderId + '.pdf';
       const invoicePath = path.join('data', 'invoices', invoiceName);
 
-      // OPTION 3 - USE PDFKIT
       const pdfDoc = new PDFDocument();
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader(
@@ -306,29 +305,6 @@ exports.getInvoice = (req, res, next) => {
       pdfDoc.fontSize(18).text('Total Price: $' + totalPrice.toFixed(2));
 
       pdfDoc.end();
-
-      // OPTION 1 - PRELOADING DATA FOR SMALL FILES
-      // fs.readFile(invoicePath, (err, data) => {
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   res.setHeader('Content-Type', 'application/pdf');
-      //   res.setHeader(
-      //     'Content-Disposition',
-      //     'inline; filename="' + invoiceName + '"'
-      //   );
-      //   res.send(data);
-      // });
-
-      // OPTION 2 - STREAMING DATA FOR LARGE FILES
-      // const file = fs.createReadStream(invoicePath);
-      // res.setHeader('Content-Type', 'application/pdf');
-      // res.setHeader(
-      //   'Content-Disposition',
-      //   'inline; filename="' + invoiceName + '"'
-      // );
-      // file.pipe(res);
-
     })
     .catch(err => next(err));
 };

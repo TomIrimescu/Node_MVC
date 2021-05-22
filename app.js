@@ -1,11 +1,16 @@
 const path = require('path');
+// const fs = require('fs');
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const helmet = require("helmet");
+const compression = require("compression");
+// const morgan = require("morgan");
 const favicon = require('serve-favicon');
 
 require('dotenv').config();
@@ -49,10 +54,20 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
+// const accessLogStream = fs.createWriteStream(
+//   path.join(__dirname, 'access.log'),
+//   { flags: 'a' }
+// );
+
 const iconPath = path.join(__dirname, 'public', 'favicon.ico');
 const options = {
   maxAge: 200 * 60 * 60 * 24 * 1000
 };
+
+app.use(helmet());
+app.use(compression());
+// app.use(morgan('combined', { stream: accessLogStream }));
+
 app.use(favicon(iconPath, options));
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
@@ -119,10 +134,8 @@ mongoose
     }
   )
   .then(result => {
-    console.log('results have been returned');
+    app.listen(process.env.PORT || 3000);
   })
   .catch(err => {
     console.log(err);
   });
-
-module.exports = app;

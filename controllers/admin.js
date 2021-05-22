@@ -1,6 +1,3 @@
-// TEST EXISTING USER
-// const mongoose = require('mongoose');
-
 const fileHelper = require('../util/file');
 
 const { validationResult } = require('express-validator');
@@ -59,8 +56,6 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = image.path;
 
   const product = new Product({
-    // TEST EXISTING USER
-    // _id: new mongoose.Types.ObjectId('xxxxxxxxxxxxxxxx'),
     title: title,
     price: price,
     description: description,
@@ -75,23 +70,6 @@ exports.postAddProduct = (req, res, next) => {
       res.redirect('/admin/products');
     })
     .catch(err => {
-      // ERROR HANDLING OPTION 1
-      // return res.status(500).render('admin/edit-product', {
-      //   pageTitle: 'Add Product',
-      //   path: '/admin/add-product',
-      //   editing: false,
-      //   hasError: true,
-      //   product: {
-      //     title: title,
-      //     price: price,
-      //     description: description
-      //   },
-      //   errorMessage: 'Database operation failed, please try again.',
-      //   validationErrors: []
-      // });
-      // ERROR HANDLING OPTION 2
-      // res.redirect('/500');
-      // ERROR HANDLING OPTION 3
       const error = new Error(err);
       error.httpStatusCode = 500;
       return next(error);
